@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Início - Clínica Veterinária</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="estilo.css">
+</head>
+<body class="carregando">
+  <header>
+    <strong>Clínica Veterinária</strong>
+    <nav>
+      <a href="inicio.html" class="ativo">Início</a>
+      <a href="tutores.html">Tutores</a>
+      <a href="pets.html">Pets</a>
+      <a href="agendamentos.html">Agendamentos</a>
+      <a href="usuarios.html">Usuários</a>
+    </nav>
+    <span>Olá, <span id="nomeUsuario"></span></span>
+    <button id="botaoSair" type="button">Sair</button>
+  </header>
+
+  <main>
+    <h1>Início</h1>
+
+    <div class="numeros">
+      <div class="numero"><span id="totalTutores">-</span>tutores</div>
+      <div class="numero"><span id="totalPets">-</span>pets</div>
+      <div class="numero"><span id="totalAgendamentos">-</span>agendamentos marcados</div>
+    </div>
+
+    <div class="caixa">
+      <h2>Próximos agendamentos</h2>
+      <p id="mensagem" class="mensagem" role="alert"></p>
+      <div class="rolagem">
+        <table>
+          <thead>
+            <tr>
+              <th>Data e hora</th>
+              <th>Pet</th>
+              <th>Tutor</th>
+              <th>Serviço</th>
+            </tr>
+          </thead>
+          <tbody id="tabelaProximos"></tbody>
+        </table>
+      </div>
+      <p><a href="agendamentos.html">Ver todos os agendamentos</a></p>
+    </div>
+  </main>
+
+  <script src="js/endereco.js"></script>
+  <script src="js/comum.js"></script>
+  <script src="js/inicio.js"></script>
+</body>
+</html>

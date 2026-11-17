@@ -1,0 +1,403 @@
+/* Estilo do sistema: limpo e fácil de ler */
+
+/* cores usadas no sistema todo (é só trocar aqui pra mudar tudo) */
+:root {
+  --principal: #1d5e73;        /* azul-petróleo: menu, botões, números */
+  --principal-escuro: #164a5b; /* botão com o mouse em cima */
+  --principal-claro: #e6f0f3;  /* fundo do cabeçalho das tabelas */
+  --fundo: #f3f6f7;
+  --linha: #d5e0e4;            /* bordas */
+  --texto: #1e2a30;
+  --texto-suave: #5b6b73;
+  --verde: #2f7d4a;            /* concluído */
+  --vermelho: #b3261e;         /* excluir e erros */
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  /* fontes que já vêm no Windows e no Linux: funciona sem internet */
+  font-family: system-ui, "Segoe UI", Ubuntu, Roboto, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.45;
+  background: var(--fundo);
+  color: var(--texto);
+}
+
+a {
+  color: var(--principal);
+}
+
+/* contorno pra quem navega pelo teclado (Tab) */
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--principal);
+  outline-offset: 2px;
+}
+
+/* ---------- barra de cima com o menu ---------- */
+header {
+  background: var(--principal);
+  color: #fff;
+  padding: 10px 24px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 20px;
+}
+
+header strong {
+  font-size: 18px;
+  margin-right: auto;
+  letter-spacing: 0.01em;
+}
+
+/* a patinha antes do nome da clínica */
+header strong::before,
+.login h1::before {
+  content: "🐾";
+  margin-right: 8px;
+}
+
+header nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+header nav a {
+  color: #fff;
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+}
+
+header nav a:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* a página em que a pessoa está */
+header nav a.ativo {
+  background: rgba(255, 255, 255, 0.2);
+  font-weight: 600;
+}
+
+header nav a:focus-visible,
+header button:focus-visible {
+  outline-color: #fff;
+}
+
+header button {
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+}
+
+header button:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* ---------- conteúdo ---------- */
+main {
+  max-width: 1100px;
+  margin: 28px auto;
+  padding: 0 16px;
+}
+
+h1 {
+  margin: 0 0 20px;
+  font-size: 28px;
+  letter-spacing: -0.01em;
+}
+
+h2 {
+  margin: 0 0 16px;
+  font-size: 19px;
+}
+
+.caixa {
+  background: #fff;
+  border: 1px solid var(--linha);
+  border-radius: 12px;
+  padding: 22px 24px;
+  margin-bottom: 20px;
+}
+
+/* ---------- formulários ---------- */
+form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  font-weight: 600;
+  font-size: 14px;
+  gap: 5px;
+}
+
+input,
+select,
+textarea {
+  font-size: 16px;
+  padding: 9px 10px;
+  border: 1px solid #b8c7cc;
+  border-radius: 8px;
+  font-family: inherit;
+  font-weight: normal;
+  color: var(--texto);
+  background: #fff;
+}
+
+input::placeholder {
+  color: #8a989e;
+}
+
+/* campo em que a pessoa está digitando */
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--principal);
+  box-shadow: 0 0 0 3px rgba(29, 94, 115, 0.2);
+}
+
+.botoes {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* ---------- botões ---------- */
+button {
+  font-size: 15px;
+  font-family: inherit;
+  font-weight: 600;
+  padding: 9px 18px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: var(--principal);
+  color: #fff;
+  cursor: pointer;
+}
+
+button:hover {
+  background: var(--principal-escuro);
+}
+
+/* botão de "voltar atrás" (Cancelar edição, Cancelar agendamento): só a borda */
+button.secundario {
+  background: #fff;
+  color: var(--texto);
+  border-color: #b8c7cc;
+}
+
+button.secundario:hover {
+  background: var(--fundo);
+}
+
+button.perigo {
+  background: var(--vermelho);
+}
+
+button.perigo:hover {
+  background: #8f1e18;
+}
+
+button.concluir {
+  background: var(--verde);
+}
+
+button.concluir:hover {
+  background: #246139;
+}
+
+button.pequeno {
+  font-size: 14px;
+  padding: 5px 11px;
+}
+
+/* ---------- mensagens de erro e sucesso ---------- */
+.mensagem {
+  grid-column: 1 / -1;
+  margin: 0 0 12px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border-left: 4px solid;
+}
+
+.mensagem:empty {
+  display: none;
+}
+
+.mensagem.erro {
+  background: #fdecea;
+  border-color: var(--vermelho);
+  color: #7d1a14;
+}
+
+.mensagem.ok {
+  background: #e7f4eb;
+  border-color: var(--verde);
+  color: #1d5230;
+}
+
+/* ---------- tabelas ---------- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 10px;
+  border-bottom: 1px solid var(--linha);
+  vertical-align: middle;
+}
+
+th {
+  background: var(--principal-claro);
+  color: var(--texto);
+  font-weight: 600;
+}
+
+th:first-child {
+  border-top-left-radius: 8px;
+}
+
+th:last-child {
+  border-top-right-radius: 8px;
+}
+
+tbody tr:hover {
+  background: #f7fafb;
+}
+
+td.acoes {
+  white-space: nowrap;
+}
+
+td.acoes button + button {
+  margin-left: 4px;
+}
+
+.rolagem {
+  overflow-x: auto;
+}
+
+/* campo de busca e filtro em cima das tabelas */
+.busca {
+  max-width: 340px;
+  margin-bottom: 14px;
+}
+
+/* etiqueta de status do agendamento */
+.status {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.status-agendado {
+  background: var(--principal-claro);
+  color: var(--principal-escuro);
+}
+
+.status-concluido {
+  background: #e7f4eb;
+  color: #1d5230;
+}
+
+.status-cancelado {
+  background: #eceff1;
+  color: var(--texto-suave);
+}
+
+/* ---------- números da tela de início ---------- */
+.numeros {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.numero {
+  background: #fff;
+  border: 1px solid var(--linha);
+  border-left: 5px solid var(--principal);
+  border-radius: 12px;
+  padding: 14px 18px;
+  color: var(--texto-suave);
+}
+
+.numero span {
+  display: block;
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--principal);
+}
+
+/* ---------- tela de login ---------- */
+.login {
+  max-width: 400px;
+  margin: 90px auto;
+  border-top: 5px solid var(--principal);
+}
+
+.login h1 {
+  font-size: 24px;
+  margin-bottom: 6px;
+}
+
+.login form {
+  grid-template-columns: 1fr;
+  margin-top: 18px;
+}
+
+.login button[type="submit"] {
+  width: 100%;
+  padding: 11px;
+}
+
+/* ---------- textos de ajuda ---------- */
+.dica {
+  font-size: 14px;
+  font-weight: normal;
+  color: var(--texto-suave);
+}
+
+/* ---------- celular ---------- */
+@media (max-width: 600px) {
+  header {
+    padding: 10px 14px;
+  }
+
+  main {
+    margin: 18px auto;
+  }
+
+  .caixa {
+    padding: 18px 16px;
+  }
+
+  .login {
+    margin: 40px auto;
+  }
+}
+
+/* a página do sistema fica escondida até o servidor confirmar que a pessoa entrou */
+.carregando { visibility: hidden; }
+
+/* texto que não pode quebrar no meio, como o telefone */
+.sem-quebra { white-space: nowrap; }

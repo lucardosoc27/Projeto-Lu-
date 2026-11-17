@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Usuários - Clínica Veterinária</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="estilo.css">
+</head>
+<body class="carregando">
+  <header>
+    <strong>Clínica Veterinária</strong>
+    <nav>
+      <a href="inicio.html">Início</a>
+      <a href="tutores.html">Tutores</a>
+      <a href="pets.html">Pets</a>
+      <a href="agendamentos.html">Agendamentos</a>
+      <a href="usuarios.html" class="ativo">Usuários</a>
+    </nav>
+    <span>Olá, <span id="nomeUsuario"></span></span>
+    <button id="botaoSair" type="button">Sair</button>
+  </header>
+
+  <main>
+    <h1>Usuários do sistema</h1>
+
+    <div class="caixa">
+      <h2>Cadastrar funcionário</h2>
+      <p class="dica">Só quem já está logado pode cadastrar outro usuário. Assim ninguém de fora cria conta.</p>
+
+      <form id="formUsuario">
+        <label>
+          Nome *
+          <input type="text" id="nome" maxlength="100" required>
+        </label>
+
+        <label>
+          E-mail *
+          <input type="email" id="email" maxlength="100" required autocomplete="off">
+        </label>
+
+        <label>
+          Senha * (mínimo 6 caracteres)
+          <input type="password" id="senha" minlength="6" maxlength="72" required autocomplete="new-password">
+        </label>
+
+        <p id="mensagem" class="mensagem" role="alert"></p>
+
+        <div class="botoes">
+          <button type="submit">Cadastrar</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="caixa">
+      <h2>Usuários cadastrados</h2>
+      <div class="rolagem">
+        <table>
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>E-mail</th>
+            </tr>
+          </thead>
+          <tbody id="tabela"></tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/endereco.js"></script>
+  <script src="js/comum.js"></script>
+  <script src="js/usuarios.js"></script>
+</body>
+</html>

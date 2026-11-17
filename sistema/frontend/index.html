@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Entrar - Clínica Veterinária</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+  <main>
+    <div class="caixa login">
+      <h1>Clínica Veterinária</h1>
+      <p>Entre com o seu e-mail e senha.</p>
+
+      <form id="formLogin">
+        <label>
+          E-mail
+          <input type="email" id="email" required autocomplete="username">
+        </label>
+
+        <label>
+          Senha
+          <input type="password" id="senha" required autocomplete="current-password">
+        </label>
+
+        <p id="mensagem" class="mensagem" role="alert"></p>
+
+        <div class="botoes">
+          <button type="submit">Entrar</button>
+        </div>
+      </form>
+
+      <p class="dica">Por segurança, o login expira depois de 30 minutos sem usar o sistema.</p>
+    </div>
+  </main>
+
+  <script src="js/endereco.js"></script>
+  <script src="js/login.js"></script>
+</body>
+</html>

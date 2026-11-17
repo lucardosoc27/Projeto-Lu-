@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agendamentos - Clínica Veterinária</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="estilo.css">
+</head>
+<body class="carregando">
+  <header>
+    <strong>Clínica Veterinária</strong>
+    <nav>
+      <a href="inicio.html">Início</a>
+      <a href="tutores.html">Tutores</a>
+      <a href="pets.html">Pets</a>
+      <a href="agendamentos.html" class="ativo">Agendamentos</a>
+      <a href="usuarios.html">Usuários</a>
+    </nav>
+    <span>Olá, <span id="nomeUsuario"></span></span>
+    <button id="botaoSair" type="button">Sair</button>
+  </header>
+
+  <main>
+    <h1>Agendamentos</h1>
+
+    <div class="caixa">
+      <h2 id="tituloForm">Novo agendamento</h2>
+
+      <form id="formAgendamento">
+        <input type="hidden" id="id">
+
+        <label>
+          Pet *
+          <select id="pet" required>
+            <option value="">Escolha o pet</option>
+          </select>
+        </label>
+
+        <label>
+          Data e horário *
+          <input type="datetime-local" id="dataHora" required>
+        </label>
+
+        <label>
+          Serviço *
+          <select id="servico" required>
+            <option value="">Escolha o serviço</option>
+            <option>Consulta</option>
+            <option>Vacina</option>
+            <option>Banho e tosa</option>
+            <option>Retorno</option>
+            <option>Exame</option>
+          </select>
+        </label>
+
+        <label>
+          Observação
+          <input type="text" id="observacao" maxlength="255">
+        </label>
+
+        <p id="mensagem" class="mensagem" role="alert"></p>
+
+        <div class="botoes">
+          <button type="submit">Salvar</button>
+          <button type="button" id="botaoCancelar" class="secundario" hidden>Cancelar edição</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="caixa">
+      <h2>Agendamentos cadastrados</h2>
+      <p class="dica">A clínica atende um agendamento por horário. O sistema não deixa marcar dois no mesmo dia e hora (os cancelados liberam o horário).</p>
+      <label class="busca">
+        Mostrar
+        <select id="filtroStatus">
+          <option value="">Todos</option>
+          <option>Agendado</option>
+          <option>Concluído</option>
+          <option>Cancelado</option>
+        </select>
+      </label>
+      <div class="rolagem">
+        <table>
+          <thead>
+            <tr>
+              <th>Data e hora</th>
+              <th>Pet</th>
+              <th>Tutor</th>
+              <th>Telefone do tutor</th>
+              <th>Serviço</th>
+              <th>Observação</th>
+              <th>Status</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody id="tabela"></tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/endereco.js"></script>
+  <script src="js/comum.js"></script>
+  <script src="js/agendamentos.js"></script>
+</body>
+</html>

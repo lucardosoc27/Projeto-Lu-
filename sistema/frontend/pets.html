@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pets - Clínica Veterinária</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="estilo.css">
+</head>
+<body class="carregando">
+  <header>
+    <strong>Clínica Veterinária</strong>
+    <nav>
+      <a href="inicio.html">Início</a>
+      <a href="tutores.html">Tutores</a>
+      <a href="pets.html" class="ativo">Pets</a>
+      <a href="agendamentos.html">Agendamentos</a>
+      <a href="usuarios.html">Usuários</a>
+    </nav>
+    <span>Olá, <span id="nomeUsuario"></span></span>
+    <button id="botaoSair" type="button">Sair</button>
+  </header>
+
+  <main>
+    <h1>Pets</h1>
+
+    <div class="caixa">
+      <h2 id="tituloForm">Cadastrar pet</h2>
+
+      <form id="formPet">
+        <input type="hidden" id="id">
+
+        <label>
+          Nome *
+          <input type="text" id="nome" maxlength="100" required>
+        </label>
+
+        <label>
+          Espécie *
+          <input type="text" id="especie" maxlength="50" placeholder="Cachorro, gato..." required>
+        </label>
+
+        <label>
+          Raça
+          <input type="text" id="raca" maxlength="50">
+        </label>
+
+        <label>
+          Idade (anos)
+          <input type="number" id="idade" min="0" max="40">
+        </label>
+
+        <!-- o tutor é obrigatório: todo pet precisa ter um dono -->
+        <label>
+          Tutor *
+          <select id="tutor" required>
+            <option value="">Escolha o tutor</option>
+          </select>
+        </label>
+
+        <p id="mensagem" class="mensagem" role="alert"></p>
+
+        <div class="botoes">
+          <button type="submit">Salvar</button>
+          <button type="button" id="botaoCancelar" class="secundario" hidden>Cancelar edição</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="caixa">
+      <h2>Pets cadastrados</h2>
+      <label class="busca">
+        Buscar pelo nome do pet ou do tutor
+        <input type="search" id="busca" placeholder="Digite o nome">
+      </label>
+      <div class="rolagem">
+        <table>
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Espécie</th>
+              <th>Raça</th>
+              <th>Idade</th>
+              <th>Tutor</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody id="tabela"></tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/endereco.js"></script>
+  <script src="js/comum.js"></script>
+  <script src="js/pets.js"></script>
+</body>
+</html>
