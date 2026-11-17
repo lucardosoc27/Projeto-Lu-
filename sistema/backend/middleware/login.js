@@ -1,6 +1,6 @@
 // Quem pode passar: só quem está logado
 
-// REGRA (login com expiração): barra as rotas da API pra quem não entrou
+// (login com expiração): barra as rotas da API pra quem não entrou
 // ou pra quem teve a sessão expirada (30 minutos parado)
 function precisaLogin(req, res, next) {
   if (req.session.usuario) return next();

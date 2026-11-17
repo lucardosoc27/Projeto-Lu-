@@ -32,7 +32,7 @@ function validarTutor(dados, cpfObrigatorio) {
   return null;
 }
 
-// REGRA (LGPD): a API nunca devolve o CPF inteiro.
+// (LGPD): a API nunca devolve o CPF inteiro.
 // Na lista ele vai escondido (***.456.789-**).
 router.get('/tutores', rota(async (req, res) => {
   const linhas = banco.todos(`
@@ -72,7 +72,7 @@ router.post('/tutores', rota(async (req, res) => {
   if (erro) return res.status(400).json({ erro });
 
   try {
-    // REGRA (LGPD): o CPF é criptografado ANTES de ir pro banco.
+    // (LGPD): o CPF é criptografado ANTES de ir pro banco.
     // O cpf_hash é um resumo do CPF que não dá pra desfazer: serve só pro banco recusar CPF repetido.
     const resultado = banco.executar(
       'INSERT INTO tutor (nome, cpf, cpf_hash, telefone, email) VALUES (?, ?, ?, ?, ?)',
@@ -86,7 +86,7 @@ router.post('/tutores', rota(async (req, res) => {
   }
 }));
 
-// REGRA (edição): salva no banco o que foi alterado na tela.
+// (edição): salva no banco o que foi alterado na tela.
 // Se o CPF veio em branco, o CPF salvo continua o mesmo.
 router.put('/tutores/:id', rota(async (req, res) => {
   const id = pegarId(req);

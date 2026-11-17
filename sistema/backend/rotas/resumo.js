@@ -6,7 +6,7 @@ const { rota } = require('../ajuda');
 
 const router = express.Router();
 
-// REGRA (início): os totais e os próximos agendamentos.
+// (início): os totais e os próximos agendamentos.
 // Só entram os agendamentos com status Agendado que ainda vão acontecer.
 router.get('/resumo', rota(async (req, res) => {
   // datetime('now', 'localtime') é a data e a hora de agora, no fuso do computador

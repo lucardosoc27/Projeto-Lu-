@@ -57,7 +57,7 @@ router.post('/pets', rota(async (req, res) => {
   res.status(201).json({ id: resultado.lastInsertRowid });
 }));
 
-// REGRA (edição): salva no banco o que foi alterado na tela
+// (edição): salva no banco o que foi alterado na tela
 router.put('/pets/:id', rota(async (req, res) => {
   const dados = dadosDoPet(req.body);
   const erro = await validarPet(dados);
@@ -77,7 +77,7 @@ router.delete('/pets/:id', rota(async (req, res) => {
     if (resultado.changes === 0) return res.status(404).json({ erro: 'Pet não encontrado.' });
     res.json({ ok: true });
   } catch (e) {
-    // REGRA (exclusão): o banco não deixa apagar pet que ainda tem agendamento
+    // (exclusão): o banco não deixa apagar pet que ainda tem agendamento
     if (banco.estaEmUso(e)) {
       return res.status(409).json({ erro: 'Esse pet tem agendamentos. Apague os agendamentos dele primeiro.' });
     }

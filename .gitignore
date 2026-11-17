@@ -1,4 +1,3 @@
 node_modules/
 *.log
-# o banco SQLite é criado sozinho pelo servidor
 *.db

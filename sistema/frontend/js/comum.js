@@ -68,7 +68,7 @@ function formatarDataHora(valor) {
   return `${dia}/${mes}/${ano} às ${hora.slice(0, 5)}`;
 }
 
-// REGRA (páginas protegidas): antes de mostrar a página, pergunta pro servidor quem entrou.
+// (páginas protegidas): antes de mostrar a página, pergunta pro servidor quem entrou.
 // Quem não entrou volta pro login. A página fica escondida (class="carregando") até a resposta chegar.
 // Coloca o nome de quem está logado no topo e liga o botão Sair.
 async function iniciarMenu() {
@@ -90,7 +90,7 @@ async function iniciarMenu() {
   document.getElementById('nomeUsuario').textContent = usuario.nome;
   document.body.classList.remove('carregando');
 
-  // REGRA (logout): o botão Sair apaga a sessão no servidor
+  // (logout): o botão Sair apaga a sessão no servidor
   document.getElementById('botaoSair').addEventListener('click', async () => {
     await fetch(API + '/api/logout', { method: 'POST', credentials: 'include' });
     location.href = 'index.html';

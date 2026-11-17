@@ -8,7 +8,7 @@ const { precisaLogin } = require('../middleware/login');
 
 const router = express.Router();
 
-// REGRA (login): e-mail e senha errados mostram mensagem de erro na tela
+// (login): e-mail e senha errados mostram mensagem de erro na tela
 router.post('/login', rota(async (req, res) => {
   const email = texto(req.body.email).toLowerCase();
   const senha = typeof req.body.senha === 'string' ? req.body.senha : '';

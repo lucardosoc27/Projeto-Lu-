@@ -12,7 +12,7 @@ router.get('/usuarios', rota(async (req, res) => {
   res.json(banco.todos('SELECT id, nome, email FROM usuario ORDER BY nome'));
 }));
 
-// REGRA (sem cadastro aberto): esta rota fica depois do precisaLogin no server.js,
+// (sem cadastro aberto): esta rota fica depois do precisaLogin no server.js,
 // então só quem já está logado consegue cadastrar outro usuário
 router.post('/usuarios', rota(async (req, res) => {
   const nome = texto(req.body.nome);

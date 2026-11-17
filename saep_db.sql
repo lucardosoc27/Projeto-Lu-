@@ -1,11 +1,5 @@
--- =====================================================
 -- Banco de dados da Clínica Veterinária (SQLite)
--- Cria as tabelas e já coloca pelo menos 3 registros em cada uma
---
--- Não precisa rodar este arquivo na mão: na primeira vez que o servidor liga
--- (npm start), ele mesmo roda este script e cria o arquivo sistema/backend/saep_db.db.
--- Rodar de novo (npm run zerar) apaga tudo e volta pros dados de exemplo.
--- =====================================================
+
 
 -- faz o SQLite respeitar as chaves estrangeiras
 PRAGMA foreign_keys = ON;
@@ -16,10 +10,9 @@ DROP TABLE IF EXISTS pet;
 DROP TABLE IF EXISTS tutor;
 DROP TABLE IF EXISTS usuario;
 
--- -----------------------------------------------------
 -- Tabela usuario: quem pode entrar no sistema (funcionários da clínica)
 -- A senha fica guardada com hash (bcrypt), nunca a senha pura
--- -----------------------------------------------------
+
 CREATE TABLE usuario (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   nome VARCHAR(100) NOT NULL,
@@ -27,10 +20,9 @@ CREATE TABLE usuario (
   senha VARCHAR(255) NOT NULL
 );
 
--- -----------------------------------------------------
 -- Tabela tutor: o dono do pet
 -- O CPF fica criptografado (cpf) e tem um hash (cpf_hash) só pra não deixar cadastrar o mesmo CPF duas vezes
--- -----------------------------------------------------
+
 CREATE TABLE tutor (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   nome VARCHAR(100) NOT NULL,
@@ -40,10 +32,9 @@ CREATE TABLE tutor (
   email VARCHAR(100)
 );
 
--- -----------------------------------------------------
 -- Tabela pet: todo pet PRECISA ter um tutor (tutor_id NOT NULL)
 -- Não deixa apagar um tutor que ainda tem pet (ON DELETE RESTRICT)
--- -----------------------------------------------------
+
 CREATE TABLE pet (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   nome VARCHAR(100) NOT NULL,
@@ -55,13 +46,12 @@ CREATE TABLE pet (
     ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
--- -----------------------------------------------------
--- Tabela agendamento: consulta, vacina, banho etc.
--- status: Agendado, Concluído ou Cancelado (o CHECK não deixa gravar outro valor)
+-- Tabela agendamento: consulta, vacina, banho etc
+-- status: Agendado, Concluído ou Cancelado 
 -- A clínica atende um agendamento por horário. Quem confere isso é o servidor:
--- não pode ter dois agendamentos no mesmo horário, a não ser que o outro esteja Cancelado
+-- não pode ter dois agendamentos no mesmo horário, a não ser que o outro esteja cancelado
 -- data_hora fica no formato 'AAAA-MM-DD HH:MM:SS'
--- -----------------------------------------------------
+
 CREATE TABLE agendamento (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   pet_id INTEGER NOT NULL,
@@ -77,9 +67,7 @@ CREATE TABLE agendamento (
 -- deixa a busca por data mais rápida
 CREATE INDEX idx_agendamento_data_hora ON agendamento (data_hora);
 
--- =====================================================
 -- Dados iniciais (pelo menos 3 registros em cada tabela)
--- =====================================================
 
 -- Usuários: a senha dos três é senha123 (aqui está só o hash dela)
 INSERT INTO usuario (nome, email, senha) VALUES

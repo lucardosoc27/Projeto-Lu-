@@ -56,7 +56,7 @@ async function validarAgendamento(dados, idAtual) {
     return 'Não dá pra marcar num horário que já passou.';
   }
 
-  // REGRA (conflito de horário): confere os agendamentos já cadastrados.
+  // (conflito de horário): confere os agendamentos já cadastrados.
   // A clínica atende um por horário. Os cancelados não contam: o horário deles fica livre.
   const conflito = banco.um(
     "SELECT id FROM agendamento WHERE data_hora = ? AND status <> 'Cancelado' AND id <> ?",
@@ -67,7 +67,7 @@ async function validarAgendamento(dados, idAtual) {
   return null;
 }
 
-// REGRA (listagem): ordenada pela data, juntando os dados do agendamento, do pet e do tutor
+// (listagem): ordenada pela data, juntando os dados do agendamento, do pet e do tutor
 router.get('/agendamentos', rota(async (req, res) => {
   const linhas = banco.todos(`
     SELECT a.id, a.data_hora, a.servico, a.observacao, a.status, a.pet_id,
@@ -90,7 +90,7 @@ router.post('/agendamentos', rota(async (req, res) => {
   const erro = await validarAgendamento(dados, null);
   if (erro) return res.status(400).json({ erro });
 
-  // REGRA (status): todo agendamento novo começa como Agendado
+  // (status): todo agendamento novo começa como Agendado
   const resultado = banco.executar(
     "INSERT INTO agendamento (pet_id, data_hora, servico, observacao, status) VALUES (?, ?, ?, ?, 'Agendado')",
     [dados.pet_id, dados.data_hora, dados.servico, dados.observacao || null]
@@ -98,7 +98,7 @@ router.post('/agendamentos', rota(async (req, res) => {
   res.status(201).json({ id: resultado.lastInsertRowid });
 }));
 
-// REGRA (edição): salva no banco o que foi alterado na tela
+// (edição): salva no banco o que foi alterado na tela
 router.put('/agendamentos/:id', rota(async (req, res) => {
   const id = pegarId(req);
   const dados = dadosDoAgendamento(req.body);
@@ -113,7 +113,7 @@ router.put('/agendamentos/:id', rota(async (req, res) => {
   res.json({ ok: true });
 }));
 
-// REGRA (status): os botões Concluir e Cancelar só mudam quem ainda está Agendado
+// (status): os botões Concluir e Cancelar só mudam quem ainda está Agendado
 router.patch('/agendamentos/:id/status', rota(async (req, res) => {
   const novoStatus = texto(req.body.status);
   if (novoStatus !== 'Concluído' && novoStatus !== 'Cancelado') {

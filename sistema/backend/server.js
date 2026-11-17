@@ -1,7 +1,5 @@
-// =====================================================
 // Servidor do sistema da Clínica Veterinária
 // Para rodar: npm install (só na primeira vez) e depois npm start
-// =====================================================
 
 const express = require('express');
 const session = require('express-session');
@@ -21,7 +19,7 @@ app.use(cors({ origin: config.enderecosDoFrontend, credentials: true }));
 app.use(express.json());
 
 // ---------- LOGIN COM TEMPO DE EXPIRAÇÃO ----------
-// REGRA (login com expiração): a sessão dura X minutos (config.js).
+// (login com expiração): a sessão dura X minutos (config.js).
 // O "rolling" faz o tempo começar de novo toda vez que a pessoa mexe no sistema.
 // Se ficar parada esse tempo, cai e tem que entrar de novo.
 app.use(session({

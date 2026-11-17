@@ -17,7 +17,7 @@ fetch(API + '/api/eu', { credentials: 'include' })
   .then((resposta) => { if (resposta.ok) location.href = 'inicio.html'; })
   .catch(() => {}); // servidor desligado: o erro aparece quando tentar entrar
 
-// REGRA (login): e-mail ou senha errados mostram a mensagem de erro do servidor
+// (login): e-mail ou senha errados mostram a mensagem de erro do servidor
 formLogin.addEventListener('submit', async (evento) => {
   evento.preventDefault(); // não deixa a página recarregar
 

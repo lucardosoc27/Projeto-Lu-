@@ -1,7 +1,6 @@
 // Conexão com o banco SQLite
-// O SQLite é um banco que fica num arquivo só (saep_db.db), dentro desta pasta.
+// O SQLite é um banco que fica num arquivo só (saep_db.db), dentro desta pasta
 // Ele já vem dentro do Node.js (versão 22.5 ou mais nova): não precisa instalar
-// nem abrir o MySQL, o XAMPP ou qualquer outro programa.
 
 const fs = require('fs');
 const path = require('path');
