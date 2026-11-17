@@ -94,6 +94,11 @@ Todos com a senha **senha123**:
 - Senha guardada com hash (bcrypt).
 - O login cai depois de 30 minutos sem mexer.
 - Usuário novo só é cadastrado por quem já está logado (tela Usuários).
+- Depois de 5 senhas erradas seguidas, o login daquele e-mail fica bloqueado por 5 minutos.
+- O login demora o mesmo tempo com e-mail que existe e com e-mail que não existe (não dá pra descobrir quem tem conta).
+- Busca no banco sempre com parâmetros (`?`), sem juntar texto na consulta (protege de SQL injection).
+- O que vem do usuário é escapado antes de aparecer nas tabelas (protege de XSS).
+- Erro do servidor não mostra detalhes do código, e o sistema não abre dentro de outro site (iframe).
 
 ## Outras coisas que dá pra fazer
 

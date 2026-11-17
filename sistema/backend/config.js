@@ -9,6 +9,8 @@ module.exports = {
   // ATENÇÃO: se trocar essa chave, os CPFs que já estão no banco não abrem mais
   chaveSecreta: 'clinica-vet-saep-2026-chave',
 
+  segredoDaSessao: 'clinica-vet-saep-2026-sessao',
+
   // tempo que o login dura sem a pessoa mexer no sistema (em minutos)
   minutosDaSessao: 30,
 

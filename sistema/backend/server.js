@@ -11,19 +11,28 @@ const { precisaLogin, paginaProtegida } = require('./middleware/login');
 
 const app = express();
 
+app.disable('x-powered-by');
+
+app.use((req, res, next) => {
+  res.set('X-Frame-Options', 'DENY');
+  res.set('X-Content-Type-Options', 'nosniff');
+  res.set('Referrer-Policy', 'no-referrer');
+  next();
+});
+
 // ---------- LIVE SERVER (CORS) ----------
 // O Live Server abre as páginas em outra porta (5500). O CORS deixa só esses endereços
 // chamarem a API, e o "credentials" deixa o navegador mandar o cookie do login junto.
 app.use(cors({ origin: config.enderecosDoFrontend, credentials: true }));
 
-app.use(express.json());
+app.use(express.json({ limit: '100kb' }));
 
 // ---------- LOGIN COM TEMPO DE EXPIRAÇÃO ----------
 // (login com expiração): a sessão dura X minutos (config.js).
 // O "rolling" faz o tempo começar de novo toda vez que a pessoa mexe no sistema.
 // Se ficar parada esse tempo, cai e tem que entrar de novo.
 app.use(session({
-  secret: config.chaveSecreta,
+  secret: config.segredoDaSessao,
   resave: false,
   saveUninitialized: false,
   rolling: true,
@@ -59,6 +68,13 @@ app.get('/', (req, res) => {
   res.redirect(req.session.usuario ? '/inicio.html' : '/index.html');
 });
 app.use(paginaProtegida, express.static(pastaFrontend));
+
+app.use((erro, req, res, next) => {
+  if (erro.type === 'entity.parse.failed') return res.status(400).json({ erro: 'Os dados enviados estão em formato inválido.' });
+  if (erro.type === 'entity.too.large') return res.status(413).json({ erro: 'Os dados enviados são grandes demais.' });
+  console.error(erro);
+  res.status(500).json({ erro: 'Deu um erro no servidor. Tente de novo.' });
+});
 
 // ---------- LIGA O SERVIDOR ----------
 app.listen(config.porta, () => {

@@ -10,7 +10,8 @@ function precisaLogin(req, res, next) {
 // mesma coisa, mas para as páginas, quando o servidor também mostra o frontend
 // (sem o Live Server): quem não entrou volta pra tela de login
 function paginaProtegida(req, res, next) {
-  const ehPaginaDoSistema = req.path.endsWith('.html') && req.path !== '/index.html';
+  const caminho = req.path.toLowerCase();
+  const ehPaginaDoSistema = caminho.endsWith('.html') && caminho !== '/index.html';
   if (ehPaginaDoSistema && !req.session.usuario) return res.redirect('/index.html?entrar=1');
   next();
 }
