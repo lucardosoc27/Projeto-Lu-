@@ -63,10 +63,13 @@
     <div class="caixa">
       <h2>Tutores cadastrados</h2>
       <p class="dica">O CPF aparece escondido na lista e não volta inteiro nem na edição, para proteger os dados (LGPD).</p>
-      <label class="busca">
-        Buscar pelo nome
-        <input type="search" id="busca" placeholder="Digite o nome do tutor">
-      </label>
+      <form id="formBusca" class="busca busca-com-botao">
+        <label>
+          Buscar pelo nome
+          <input type="search" id="busca" placeholder="Digite o nome do tutor">
+        </label>
+        <button type="submit">Buscar</button>
+      </form>
       <div class="rolagem">
         <table>
           <thead>

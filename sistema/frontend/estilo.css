@@ -299,6 +299,24 @@ td.acoes button + button {
   margin-bottom: 14px;
 }
 
+.busca-com-botao {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  max-width: 460px;
+}
+
+.busca-com-botao label {
+  flex: 1;
+  margin: 0;
+}
+
+.detalhe {
+  display: block;
+  font-size: 13px;
+  color: var(--texto-suave);
+}
+
 /* etiqueta de status do agendamento */
 .status {
   display: inline-block;

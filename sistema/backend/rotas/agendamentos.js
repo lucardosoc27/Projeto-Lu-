@@ -2,6 +2,7 @@
 
 const express = require('express');
 const banco = require('../banco');
+const cripto = require('../cripto');
 const { rota, pegarId, texto } = require('../ajuda');
 
 const router = express.Router();
@@ -71,12 +72,13 @@ async function validarAgendamento(dados, idAtual) {
 router.get('/agendamentos', rota(async (req, res) => {
   const linhas = banco.todos(`
     SELECT a.id, a.data_hora, a.servico, a.observacao, a.status, a.pet_id,
-           p.nome AS pet, t.nome AS tutor, t.telefone
+           p.nome AS pet, p.especie, p.raca, p.idade,
+           t.nome AS tutor, t.cpf, t.telefone, t.email
     FROM agendamento a
     JOIN pet p ON p.id = a.pet_id
     JOIN tutor t ON t.id = p.tutor_id
     ORDER BY a.data_hora`);
-  res.json(linhas);
+  res.json(linhas.map((a) => ({ ...a, cpf: cripto.mascarar(cripto.descriptografar(a.cpf)) })));
 }));
 
 router.get('/agendamentos/:id', rota(async (req, res) => {

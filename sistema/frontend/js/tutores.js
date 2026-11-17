@@ -61,6 +61,11 @@ function mostrarTutores() {
 // filtra enquanto digita
 campoBusca.addEventListener('input', mostrarTutores);
 
+document.getElementById('formBusca').addEventListener('submit', (evento) => {
+  evento.preventDefault();
+  mostrarTutores();
+});
+
 // salvar: se tem id é edição (PUT), se não tem é cadastro novo (POST)
 form.addEventListener('submit', async (evento) => {
   evento.preventDefault();

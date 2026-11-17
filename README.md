@@ -87,7 +87,7 @@ Todos com a senha **senha123**:
 - Todo pet precisa ter um tutor (não salva sem).
 - Não deixa marcar dois agendamentos no mesmo dia e horário, nem marcar no passado. Agendamento cancelado libera o horário.
 - Agendamento começa como Agendado e pode virar Concluído ou Cancelado (depois disso não muda mais).
-- A lista de agendamentos vem ordenada pela data, com o pet, o tutor e o telefone do tutor.
+- A lista de agendamentos vem ordenada pela data, com todos os dados do pet (nome, espécie, raça e idade) e do tutor (nome, CPF escondido, telefone e e-mail).
 - Não deixa cadastrar dois tutores com o mesmo CPF, e confere se o CPF é válido.
 - O CPF fica criptografado no banco e nunca sai inteiro do servidor: na lista ele aparece escondido, e na edição o campo vem vazio (em branco = manter o CPF salvo).
 - Não deixa excluir tutor que tem pet, nem pet que tem agendamento.
@@ -102,7 +102,7 @@ Todos com a senha **senha123**:
 
 ## Outras coisas que dá pra fazer
 
-- Pesquisar tutores pelo nome e pets pelo nome do pet ou do tutor.
+- Pesquisar tutores pelo nome (digita e clica em Buscar ou aperta Enter) e pets pelo nome do pet ou do tutor.
 - Filtrar os agendamentos pelo status (os dados de exemplo já têm um de cada).
 
 ## Se der erro

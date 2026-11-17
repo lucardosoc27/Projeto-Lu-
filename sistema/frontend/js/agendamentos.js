@@ -63,8 +63,8 @@ function mostrarAgendamentos() {
     return `
       <tr>
         <td>${esc(formatarDataHora(a.data_hora))}</td>
-        <td>${esc(a.pet)}</td>
-        <td>${esc(a.tutor)}</td>
+        <td>${esc(a.pet)}<span class="detalhe">${esc(dadosDoPet(a))}</span></td>
+        <td>${esc(a.tutor)}<span class="detalhe">CPF ${esc(a.cpf)}</span><span class="detalhe">${esc(a.email || 'sem e-mail')}</span></td>
         <td class="sem-quebra">${esc(a.telefone)}</td>
         <td>${esc(a.servico)}</td>
         <td>${esc(a.observacao)}</td>
@@ -78,6 +78,13 @@ function mostrarAgendamentos() {
 }
 
 filtroStatus.addEventListener('change', mostrarAgendamentos);
+
+function dadosDoPet(a) {
+  const partes = [a.especie];
+  if (a.raca) partes.push(a.raca);
+  if (a.idade !== null && a.idade !== undefined) partes.push(a.idade === 1 ? '1 ano' : a.idade + ' anos');
+  return partes.join(', ');
+}
 
 // Concluir ou Cancelar
 async function mudarStatus(id, novoStatus) {
